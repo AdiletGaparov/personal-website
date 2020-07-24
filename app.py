@@ -2,8 +2,8 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 import pandas as pd
-from utils import img_to_bytes, read_markdown_file, gantt_chart, language_chart, travel_chart
-from load_data import load_history, load_language, load_courses, load_travel
+from utils import img_to_bytes, read_markdown_file, gantt_chart, language_chart, travel_chart, programming_language_chart
+from load_data import load_history, load_language, load_courses, load_travel, load_programming_lang
 import altair as alt
 import datetime as dt
 
@@ -103,7 +103,10 @@ elif page == 'Resume':
 
     languages = load_language()
     lang_chart = language_chart(languages)
-    st.altair_chart(lang_chart)
+    programming_lang = load_programming_lang()
+    programming_lang_chart = programming_language_chart(programming_lang)
+    st.altair_chart(lang_chart, use_container_width=True)
+    st.altair_chart(programming_lang_chart, use_container_width=True)
     st.markdown('---')
 
     # Courses section
@@ -115,13 +118,13 @@ elif page == 'Resume':
     st.markdown(courses_subtitle, unsafe_allow_html=True)
 
     courses = load_courses()
-    courses_columns = ['Course', 'Organization']
+    courses_columns = ['Course', 'Organization', 'Status']
     chosen_topic = st.multiselect('Topic',  list(courses.Topic.unique()), list(courses.Topic.unique()))
     if not chosen_topic:
         st.write('')
     else:
         table = st.empty()
-        add_columns = st.multiselect('Add info', ['Certificate', 'Platform', 'Exact Date', 'Topic'])
+        add_columns = st.multiselect('Additional information', ['Certificate', 'Platform', 'Date', 'Topic'])
         courses_columns = courses_columns + add_columns
         table.dataframe(courses.loc[courses.Topic.isin(chosen_topic), courses_columns])
 

@@ -467,7 +467,7 @@ def load_history():
 def load_language():
     data = pd.DataFrame([
         {
-            'language': 'English',
+            'language': 'English   ',
             'proficiency (LinkedIn)': 'Full professional proficiency', # LinkedIn convention
             'level': 84,
             'speaking proficiency': 'Fluent',
@@ -475,7 +475,7 @@ def load_language():
             'comments': 'Undergraduate and graduate degrees completed in English.\nWork in international environments.\nConsume information mostly in English.'
         },
         {
-            'language': 'Russian',
+            'language': 'Russian   ',
             'proficiency (LinkedIn)': 'Native or bilingual proficiency',
             'level': 100,
             'speaking proficiency': 'Native',
@@ -483,7 +483,7 @@ def load_language():
             'comments': 'Mother tongue.'
         },
         {
-            'language': 'French',
+            'language': 'French    ',
             'proficiency (LinkedIn)': 'Professional proficiency',
             'level': 67,
             'speaking proficiency': 'Fluent',
@@ -491,7 +491,7 @@ def load_language():
             'comments': 'Lived 2 months in France.\nObtained DELF B2 certificate in 2015 with Speaking grade of 23/25.\nRoom for improvement: writing skills.'
         },
         {
-            'language': 'Spanish',
+            'language': 'Spanish   ',
             'proficiency (LinkedIn)': 'Professional proficiency',
             'level': 67,
             'speaking proficiency': 'Fluent',
@@ -499,7 +499,7 @@ def load_language():
             'comments': 'Lived 1 year in Madrid, Spain.\nDid not get any certificates yet, but have experience passing interviews in Spanish.\nRoom for improvement: writing skills.'
         },
         {
-            'language': 'Kazakh',
+            'language': 'Kazakh    ',
             'proficiency (LinkedIn)': 'Limited professional proficiency',
             'level': 50,
             'speaking proficiency': 'Proficient',
@@ -507,7 +507,7 @@ def load_language():
             'comments': 'Conversational level of proficiency.'
         },
         {
-            'language': 'Swedish',
+            'language': 'Swedish   ',
             'proficiency (LinkedIn)': 'Elementary proficiency',
             'level': 33,
             'speaking proficiency': 'Beginner',
@@ -518,145 +518,197 @@ def load_language():
     return data
 
 @st.cache
+def load_programming_lang():
+    data = pd.DataFrame([
+        {
+            'programming language': 'Python',
+            'level': 80,
+            'definition': 'Can write the code',
+            'comments': 'This website is written mostly in Python (streamlit)'
+        },
+        {
+            'programming language': 'SQL',
+            'level': 70,
+            'definition': 'Can write the code',
+            'comments': 'Can write sophisticated queries'
+        },
+        {
+            'programming language': 'R',
+            'level': 60,
+            'definition': 'Can write the code',
+            'comments': 'Prefer pandas over data.table and scikit-learn over R packages for Machine Learning'
+        },
+        {
+            'programming language': 'HTML5/CSS',
+            'level': 50,
+            'definition': 'Can write some code',
+            'comments': 'Used HTML and CSS in my freelance project'
+        },
+        {
+            'programming language': 'JavaScript',
+            'level': 30,
+            'definition': 'Can read the code',
+            'comments': 'Had a course on JS, used it in a project'
+        }
+    ])
+    return data
+
+@st.cache
 def load_courses():
     data = pd.DataFrame([
         {
             'Course': 'Deep Learning Specialization',
             'Organization': 'deeplearning.ai',
-            'Topic': 'Data Science/Analytics',
+            'Topic': 'Data Science / AI',
             'Platform': 'coursera.org',
-            'Exact Date': '2020-05-17',
-            'Date': 'May 2020',
+            'Status': 'Completed',
+            'Date': '2020-05-17',
             'Certificate': 'https://www.coursera.org/account/accomplishments/specialization/AVD5TJYKCR3L'
         },
         {
             'Course': 'Strategic Management of Innovation',
             'Organization': 'HEC Paris',
-            'Topic': 'Digital/Business Strategy',
+            'Topic': 'Business Strategy',
             'Platform': 'coursera.org',
-            'Exact Date': '2019-09-19',
-            'Date': 'Sept 2019',
+            'Date': '2019-09-19',
+            'Status': 'Completed',
             'Certificate': 'https://www.coursera.org/account/accomplishments/verify/H5E2CQW754W8',
         },
         {
             'Course': 'How to Build Digital Products',
             'Organization': 'Product School',
-            'Topic': 'General Product Management',
+            'Topic': 'Other',
             'Platform': 'productschool.teachable.com',
-            'Exact Date': '2020-06-20',
-            'Date': 'June 2020',
+            'Date': '2020-06-20',
+            'Status': 'Completed',
             'Certificate': 'cert_kr5drxm0',
+        },
+        {
+            'Course': 'How to Build and Grow Product Teams',
+            'Organization': 'Product School',
+            'Topic': 'Other',
+            'Platform': 'productschool.teachable.com',
+            'Date': '2020-09-01',
+            'Status': 'In progress',
+            'Certificate': '',
+        },
+        {
+            'Course': 'Product Design',
+            'Organization': 'Product School',
+            'Topic': 'Design and UX/UI',
+            'Platform': 'productschool.teachable.com',
+            'Date': '2020-09-01',
+            'Status': 'In progress',
+            'Certificate': '',
         },
         {
             'Course': 'The Science of Everyday Thinking',
             'Organization': 'University of Queensland',
-            'Topic': 'Design and Customer/User Experience',
+            'Topic': 'Other',
             'Platform': 'edx.com',
-            'Exact Date': '2014-07-02',
-            'Date': 'July 2014',
+            'Date': '2014-07-02',
+            'Status': 'Completed',
             'Certificate': 'https://verify.edx.org/cert/ca2ff3759ed84b4399ab34645e801ea0',
         },
         {
             'Course': 'Analyzing and Visualizing Data with Power BI',
             'Organization': 'Microsoft',
-            'Topic': 'Data Science/Analytics',
+            'Topic': 'Analytics',
             'Platform': 'edx.com',
-            'Exact Date': '2016-12-28',
-            'Date': 'Dec 2016',
+            'Date': '2016-12-28',
+            'Status': 'Completed',
             'Certificate': 'https://courses.edx.org/certificates/8548fd38adfa4f68a940c54a45f89ada',
         },
         {
             'Course': 'Brand and Product Management',
             'Organization': 'IE Business School',
-            'Topic': 'Marketing',
+            'Topic': 'Marketing / Sales',
             'Platform': 'coursera.org',
-            'Exact Date': '2020-04-16',
-            'Date': 'Apr 2020',
+            'Date': '2020-04-16',
+            'Status': 'Completed',
             'Certificate': 'https://www.coursera.org/account/accomplishments/records/SSFASDY293QL',
         },
         {
             'Course': 'Data Scientist with Python track',
             'Organization': 'DataCamp',
-            'Topic': 'Data Science/Analytics',
+            'Topic': 'Data Science / AI',
             'Platform': 'datacamp.com',
-            'Exact Date': '2019-06-10',
-            'Date': 'June 2019',
+            'Date': '2019-06-10',
+            'Status': 'Completed',
             'Certificate': 'https://www.datacamp.com/statement-of-accomplishment/track/65382807a81e490fa943aa8f06da188ca789e3eb'
         },
         {
             'Course': 'Learn Growth Hacking',
             'Organization': 'One Month',
-            'Topic': "Marketing",
+            'Topic': "Marketing / Sales",
             'Platform': 'onemonth.com',
-            'Exact Date': '2019-10-15',
-            'Date': 'Oct 2019',
-            'Certificate': None
+            'Date': '2019-10-15',
+            'Status': 'Completed',
+            'Certificate': ''
         },
         {
             'Course': 'Design Thinking',
             'Organization': 'IE Business School',
-            'Topic': 'Design and Customer/User Experience',
+            'Topic': 'Design and UX/UI',
             'Platform': 'on-campus',
-            'Exact Date': None,
-            'Date': None,
+            'Status': 'Completed',
+            'Date': '2019-11-01',
+            'Certificate': ''
         },
         {
             'Course': 'Agile Project Management',
             'Organization': 'IE Business School',
-            'Topic': 'Project Management',
+            'Topic': 'Other',
             'Platform': 'on-campus',
-            'Exact Date': None,
-            'Date': None,
+            'Status': 'Completed',
+            'Date': '2019-11-01',
+            'Certificate': ''
         },
         {
             'Course': 'Analytics for Financial Services',
             'Organization': 'IE University',
             'Topic': 'Industry Knowledge',
             'Platform': 'on-campus',
-            'Exact Date': None,
-            'Date': None,
+            'Status': 'Completed',
+            'Date': '2020-03-01',
+            'Certificate': ''
         },
         {
             'Course': 'Analytics for Retail & Consumer',
             'Organization': 'IE University',
             'Topic': 'Industry Knowledge',
             'Platform': 'on-campus',
-            'Exact Date': None,
-            'Date': None,
+            'Status': 'Completed',
+            'Date': '2020-03-01',
+            'Certificate': ''
         },
         {
             'Course': 'Big Data & Health',
             'Organization': 'IE University',
             'Topic': 'Industry Knowledge',
             'Platform': 'on-campus',
-            'Exact Date': None,
-            'Date': None,
+            'Status': 'Completed',
+            'Date': '2020-03-01',
+            'Certificate': ''
         },
         {
             'Course': 'Marketing Intelligence',
             'Organization': 'IE University',
-            'Topic': 'Marketing',
+            'Topic': 'Marketing / Sales',
             'Platform': 'on-campus',
-            'Exact Date': None,
-            'Date': None,
+            'Status': 'Completed',
+            'Date': '2020-03-01',
+            'Certificate': ''
         },
         {
             'Course': 'Insight Selling',
             'Organization': 'Microsoft',
-            'Topic': None,
-            'Platform': 'Microsoft',
-            'Exact Date': None,
-            'Date': None,
-        },
-        {
-            'Course': 'Choose topic',
-            'Organization': 'Above',
-            'Topic': None,
-            'Platform': None,
-            'Exact Date': None,
-            'Date': None
+            'Topic': 'Marketing / Sales',
+            'Platform': 'Microsoft (internal)',
+            'Status': 'Completed',
+            'Date': '2017-10-27',
+            'Certificate': 'https://www.youracclaim.com/badges/1bcd0fd8-a58d-4527-875c-21af1d37002d/public_url'
         }
-
     ])
 
     return data
