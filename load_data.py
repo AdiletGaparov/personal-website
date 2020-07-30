@@ -524,31 +524,31 @@ def load_programming_lang():
             'programming language': 'Python',
             'level': 80,
             'definition': 'Can write the code',
-            'comments': 'This website is written mostly in Python (streamlit)'
+            'comments': 'This website is written mostly in Python (streamlit). Used Flask, pandas, plotly in my freelance project. Used scikit-learn/PyTorch/Keras for Machine Learning projects.'
         },
         {
             'programming language': 'SQL',
             'level': 70,
             'definition': 'Can write the code',
-            'comments': 'Can write sophisticated queries'
+            'comments': 'Can write sophisticated queries.'
         },
         {
             'programming language': 'R',
             'level': 60,
             'definition': 'Can write the code',
-            'comments': 'Prefer pandas over data.table and scikit-learn over R packages for Machine Learning'
+            'comments': 'Despite preferring pandas over data.table and scikit-learn over R packages for Machine Learning, I can use R if needed.'
         },
         {
             'programming language': 'HTML5/CSS',
             'level': 50,
             'definition': 'Can write some code',
-            'comments': 'Used HTML and CSS in my freelance project'
+            'comments': 'Used HTML and CSS in my freelance project and in this website.'
         },
         {
             'programming language': 'JavaScript',
             'level': 30,
             'definition': 'Can read the code',
-            'comments': 'Had a course on JS, used it in a project'
+            'comments': 'Had a course on JS, used it in a project.'
         }
     ])
     return data
@@ -708,6 +708,24 @@ def load_courses():
             'Status': 'Completed',
             'Date': '2017-10-27',
             'Certificate': 'https://www.youracclaim.com/badges/1bcd0fd8-a58d-4527-875c-21af1d37002d/public_url'
+        },
+        {
+            'Course': 'Entrepreneurial Management',
+            'Organization': 'UW-Madison',
+            'Topic': 'Other',
+            'Platform': 'on-campus',
+            'Status': 'Completed',
+            'Date': '2015-08-09',
+            'Certificate': ''
+        },
+        {
+            'Course': 'Docker Fundamentals',
+            'Organization': 'A Cloud Guru',
+            'Topic': 'Other',
+            'Platform': 'acloud.guru',
+            'Status': 'In progress',
+            'Date': '2020-07-31',
+            'Certificate': ''
         }
     ])
 
@@ -824,8 +842,8 @@ def load_travel():
         {
             'Year': '2020',
             "total": 24,
-            "count": 3,
-            "Countries I have been to (names)": 'Kazakhstan, Spain, Sweden',
+            "count": 4,
+            "Countries I have been to (names)": 'Kazakhstan, Spain, Sweden, Russia',
             'New countries': 'Sweden'
         },
     ])
