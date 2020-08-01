@@ -723,8 +723,8 @@ def load_courses():
             'Organization': 'A Cloud Guru',
             'Topic': 'Other',
             'Platform': 'acloud.guru',
-            'Status': 'In progress',
-            'Date': '2020-07-31',
+            'Status': 'Completed',
+            'Date': '2020-07-30',
             'Certificate': ''
         }
     ])

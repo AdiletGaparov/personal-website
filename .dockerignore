@@ -1,0 +1,7 @@
+.dockerignore
+.git/
+.idea/
+.gitignore
+README.md
+__pycache__
+.DS_Store

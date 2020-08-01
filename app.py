@@ -14,7 +14,7 @@ page = st.sidebar.radio(label = '', options = navigation_options, key=0)
 st.sidebar.markdown('---')
 st.sidebar.markdown('### FAQ')
 if st.sidebar.button('Not sure how to pronounce my name?'):
-    st.sidebar.audio('name.mp3')
+    st.sidebar.audio('media/name.mp3')
 
 # Content
 hide_streamlit_style = """
