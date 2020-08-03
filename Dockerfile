@@ -12,5 +12,5 @@ COPY . .
 LABEL maintainer="Adilet Gaparov <adilet.gaparov@gmail.com>" \
       version="0.1"
 
-CMD streamlit run app.py
+CMD streamlit run app.py --server.port $PORT
 
