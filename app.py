@@ -78,6 +78,7 @@ elif page == 'Projects':
     if st.button('Fake News Detection'):
         st.write('A bit of description/intro/dataset and demo: https://github.com/AdiletGaparov/mbd-natural-language-processing/tree/master/fake-news-detection')
     if st.button('Sentiment-based Music Recommender'):
+        st.info("**Disclaimer**: this is a group project, but the MVP web app was written by me using Flask (micro web framework written in Python), pure JavaScript, and SoundCloud API. You can find the code on my [GitHub](https://github.com/AdiletGaparov/sentiment-based-song-recommender).")
         st.markdown(read_markdown_file('markdown/sentiment_music_recommender.md'))
         st.image('media/JS-sentiment-recommender.png', use_column_width=True, format='PNG')
 
