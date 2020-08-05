@@ -2,10 +2,16 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 import pandas as pd
-from utils import img_to_bytes, icon_html, read_markdown_file, gantt_chart, language_chart, travel_chart, programming_language_chart
-from load_data import load_history, load_language, load_courses, load_travel, load_programming_lang
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 import altair as alt
 import datetime as dt
+import time
+
+from utils import img_to_bytes, icon_html, read_markdown_file, gantt_chart, language_chart, travel_chart, programming_language_chart
+from load_data import load_history, load_language, load_courses, load_travel, load_programming_lang, load_lyrics
+from project_sentiment_music_recommender import *
 
 # Sidebar
 st.sidebar.markdown("# Navigation")
@@ -22,6 +28,8 @@ hide_streamlit_style = """
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden; padding:0}
 """
+# Hide streamlit style (footer and hamburger menu)
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 if page == 'Home':
     avatar = "<img src='data:image/jpg;base64,{}' class='img-fluid rounded-circle mx-auto d-block' style='max-width:25%'>".format(
@@ -49,10 +57,8 @@ if page == 'Home':
     """
     components.html(socia_media_links, height=40)
 
-    # Hide streamlit style (footer and hamburger menu)
-    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 elif page == 'Projects':
+
     st.markdown(
         """
         <div style = "text-align: center">
@@ -72,10 +78,8 @@ elif page == 'Projects':
     if st.button('Fake News Detection'):
         st.write('A bit of description/intro/dataset and demo: https://github.com/AdiletGaparov/mbd-natural-language-processing/tree/master/fake-news-detection')
     if st.button('Sentiment-based Music Recommender'):
-        st.write('Would be cool to have it, but challenging to implement inside app here: https://github.com/AdiletGaparov/sentiment-based-song-recommender')
-
-    # Hide streamlit style (footer and hamburger menu)
-    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+        st.markdown(read_markdown_file('markdown/sentiment_music_recommender.md'))
+        st.image('media/JS-sentiment-recommender.png', use_column_width=True, format='PNG')
 
 elif page == 'Resume':
     # Experience section
@@ -134,9 +138,6 @@ elif page == 'Resume':
         add_columns = st.multiselect('Additional information', ['Certificate', 'Platform', 'Date', 'Topic'])
         courses_columns = courses_columns + add_columns
         table.dataframe(courses.loc[courses.Topic.isin(chosen_topic), courses_columns])
-
-    # Hide streamlit style (footer and hamburger menu)
-    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 elif page == 'Chatbot':
     st.write('Chatbot')
