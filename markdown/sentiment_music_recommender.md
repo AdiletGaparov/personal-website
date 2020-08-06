@@ -34,15 +34,13 @@ Our idea relies on unveiling and categorizing songs based on the emotions and su
 Prepare your mind for flow state during studying by listening to appropriate music.
 
 **Personas**: Who are the target personas for this product, and which is the key persona?
+A university student                                                                                                                                    
 
-**User scenarios** These are full stories about how various personas will use the product in context.
+**User scenarios**  
+A student named Alen is planning to study for an exam on the subject. It is really important one, but there is so many things going on in his head. Moreover, he is not really prepared, but the exam is scheduled for next week. 
+Alen opens the music app to help with focus, he chooses the subject he is planning to study now, the level of readiness, and general genre he prefers. 
 
 **Requirements/features in**: These are the distinct, prioritized features along with a short explanation as to why the features are important. As a [type of user], I want to [perform some task] so that I can [achieve some goal]. 
-
-**Features out**: What have you explicitly decided not to do and why? Designs: Include any needed early sketches, and link to the actual
-designs once they’re available.
-
-**Open issues**: What factors do you still need to figure out?
 
 **Q&A**: What are common questions about the product, and answers to those questions? This is a good place to note key decisions.
 

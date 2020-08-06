@@ -3,24 +3,39 @@ import streamlit.components.v1 as components
 
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import altair as alt
 import datetime as dt
-import time
+from textblob import TextBlob
 
 from utils import img_to_bytes, icon_html, read_markdown_file, gantt_chart, language_chart, travel_chart, programming_language_chart
 from load_data import load_history, load_language, load_courses, load_travel, load_programming_lang, load_lyrics
-from project_sentiment_music_recommender import *
+
+
+# Contact info
+linkedin = icon_html('media/linkedin_logo.png', 'max-width:32px')
+github = icon_html('media/github_logo.png', 'max-width:32px')
+facebook = icon_html('media/facebook_logo.png', 'max-width:32px')
+instagram = icon_html('media/instagram_logo.png', 'max-width:32px')
+email = icon_html('media/icons8-mail.png', 'max-width:32px')
+
+socia_media_links = f"""
+    <div style='text-align:center;'>
+        <div style='inline-block'>
+        <a href='mailto:adilet.gaparov@gmail.com' style='margin-right:5px'>{email}</a>
+        <a href="http://www.linkedin.com/in/adilet-gaparov" target= '_blank' style='margin:5px'>{linkedin}</a>
+        <a href="http://www.github.com/adiletgaparov" target= '_blank' style='margin:5px'>{github}</a>
+        <a href="http://www.facebook.com/adiletgaparov" target='_blank' style='margin:5px'>{facebook}</a>
+        <a href="http://www.instagram.com/adilet.gaparov" target='_blank' style='margin:5px'>{instagram}</a>
+        </div>
+    </div>
+    """
+
 
 # Sidebar
 st.sidebar.markdown("# Navigation")
 navigation_options = ['Home', 'Projects', 'Resume']
 page = st.sidebar.radio(label = '', options = navigation_options, key=0)
 st.sidebar.markdown('---')
-st.sidebar.markdown('### FAQ')
-if st.sidebar.button('Not sure how to pronounce my name?'):
-    st.sidebar.audio('media/name.mp3')
 
 # Content
 hide_streamlit_style = """
@@ -32,33 +47,35 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 if page == 'Home':
+
+    # Additional sidebar
+    st.sidebar.markdown('### FAQ')
+    if st.sidebar.button('Not sure how to pronounce my name?'):
+        st.sidebar.audio('media/name.mp3')
+
+    # Main page
     avatar = "<img src='data:image/jpg;base64,{}' class='img-fluid rounded-circle mx-auto d-block' style='max-width:25%'>".format(
         img_to_bytes("media/avatar.jpg")
     )
     st.markdown(avatar, unsafe_allow_html=True)
     st.markdown(read_markdown_file("markdown/intro.md"), unsafe_allow_html=True)
 
-    linkedin = icon_html('media/linkedin_logo.png', 'max-width:32px')
-    github = icon_html('media/github_logo.png', 'max-width:32px')
-    facebook = icon_html('media/facebook_logo.png', 'max-width:32px')
-    instagram = icon_html('media/instagram_logo.png', 'max-width:32px')
-    email = icon_html('media/icons8-mail.png', 'max-width:32px')
-
-    socia_media_links = f"""
-    <div style='text-align:center;'>
-        <div style='inline-block'>
-        <a href='mailto:adilet.gaparov@gmail.com' style='margin-right:5px'>{email}</a>
-        <a href="http://www.linkedin.com/in/adilet-gaparov" target= '_blank' style='margin:5px'>{linkedin}</a>
-        <a href="http://www.github.com/adiletgaparov" target= '_blank' style='margin:5px'>{github}</a>
-        <a href="http://www.facebook.com/adiletgaparov" target='_blank' style='margin:5px'>{facebook}</a>
-        <a href="http://www.instagram.com/adilet.gaparov" target='_blank' style='margin:5px'>{instagram}</a>
-        </div>
-    </div>
-    """
     components.html(socia_media_links, height=40)
 
 elif page == 'Projects':
 
+    # Additional sidebar
+    st.sidebar.markdown('### Tech Demo')
+    sentiment_test = TextBlob(st.sidebar.text_input('Sentiment Polarity & Subjectivity'))
+    st.sidebar.markdown(f"""
+    Polarity: {round(sentiment_test.sentiment.polarity,2)}   
+    Subjectivity: {round(sentiment_test.sentiment.subjectivity,2)}
+
+    """)
+    fake_test = st.sidebar.text_input('Fake News detector')
+    st.sidebar.markdown(fake_test)
+
+    # Main page
     st.markdown(
         """
         <div style = "text-align: center">
@@ -83,6 +100,12 @@ elif page == 'Projects':
         st.image('media/JS-sentiment-recommender.png', use_column_width=True, format='PNG')
 
 elif page == 'Resume':
+
+    # Additional sidebar
+    if st.sidebar.button('Contact me'):
+        st.sidebar.markdown(socia_media_links, unsafe_allow_html=True)
+
+    # Main page
     # Experience section
     experience_subtitle = '''
         <div style="text-align: center"><div style="display: inline-block; max-width: 60%"> 

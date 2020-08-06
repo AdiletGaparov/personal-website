@@ -849,3 +849,8 @@ def load_travel():
     ])
 
     return data
+
+@st.cache
+def load_lyrics():
+    data = pd.read_csv('projects_data/lyrics_sentiment.csv')
+    return data
