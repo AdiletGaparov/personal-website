@@ -236,8 +236,8 @@ def img_to_bytes(img_path):
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
 
-def icon_html(path, style):
-    return f"<img src='data:image/png;base64,{img_to_bytes(path)}' style={style}>"
+def img_html(path, style, styling_class):
+    return f"<img src='data:image/png;base64,{img_to_bytes(path)}' style={style} class={styling_class}>"
 
 @st.cache
 def read_markdown_file(markdown_file):

@@ -1,4 +1,6 @@
 ---
+<div class="shadow p-3 mb-5 bg-white rounded">   
+
 **Final project for Natural Language Processing (NLP) class at IE: Application of NLP**
 
 **Title**   
@@ -33,22 +35,26 @@ Our idea relies on unveiling and categorizing songs based on the emotions and su
 **Messaging**   
 Prepare your mind for flow state during studying by listening to appropriate music.
 
-**Personas**: Who are the target personas for this product, and which is the key persona?
+**Persona(s)**   
 A university student                                                                                                                                    
 
 **User scenarios**  
-A student named Alen is planning to study for an exam on the subject. It is really important one, but there is so many things going on in his head. Moreover, he is not really prepared, but the exam is scheduled for next week. 
-Alen opens the music app to help with focus, he chooses the subject he is planning to study now, the level of readiness, and general genre he prefers. 
+A student named Alen is planning to study for an exam on Machine Learning. It is really important one, but there is so many things going on in his head. Moreover, he is not really prepared, but the exam is scheduled for next week and he starts to feel a little bit desperate.
+Alen opens the music app as music helps him concentrate and block outside noise in the room, he chooses the subject he is planning to study now, the level of readiness, and general genre he prefers. The app shows him the list of songs and Alen now can add songs to his playlist and start listening and prepare himself for the upcoming exam. 
 
-**Requirements/features in**: These are the distinct, prioritized features along with a short explanation as to why the features are important. As a [type of user], I want to [perform some task] so that I can [achieve some goal]. 
+**User Stories/Features/Requirements**:    
+* As a student, I want to add songs to my playlist so that I can listen to songs that I chose without interruption.
+* As a student, I want to choose subject I am preparing for so that I can listen to music that is more relevant for this subject.
+* As a student, I want to choose genre of music so that I can listen to favourite genre.
+* As a student, I want to choose how well I am prepared so that I can listen to songs with lyrics whose meaning will be more relevant.
 
-**Q&A**: What are common questions about the product, and answers to those questions? This is a good place to note key decisions.
+**Q&A**   
+* We used [TextBlob](https://textblob.readthedocs.io) for sentiment analysis. It gives two values for a text: Polarity and Subjectivity. Polarity value ranges from -1 (negative sentiment) to +1 (positive sentiment). Subjectivity value ranges from 0 (very objective) to 1 (very subjective). You can test this library on the navigation panel under Tech Demo (left).
+* We hypothesized that when a student is studying hard science (i.e. Math or Python), her mind needs to adapt to objectivity and therefore our app suggests songs whose lyrics are estimated to be objective (Subjectivity is closer to 0). On the contrary, when she studies for soft science (i.e. Ethics or Literature), we think that songs with very subjective lyrics will help in creativity and expressing her own opinion.   
+* We hypothesized that when a student is desperate (because not prepared enough given the time until the next exam), her mind needs songs with positive words, therefore our app suggests songs with Polarity closer to 1. On the contrary, if the student thinks she is ready, our app suggests songs with more negative polarity to balance out the excessive optimism. 
+* For the MVP web app, we used MetroLyrics database of lyrics, downloaded from Kaggle. 
+* We tailored the UI for our Master in Business Analytics & Big Data program at IE.
 
-**Other** considerations: This is a catch-all for anything else, such as if you make a key decision to remove or add to the project’s scope.
-
----
-**Implementation:**
-
-For this project, we used MetroLyrics database of lyrics, downloaded from Kaggle. To determine the sentiment and subjectivity of the lyrics
-
-
+**Designs**   
+Below is the web app I built (not perfect, but does the job with my basic knowledge of JavaScript).
+</div>
