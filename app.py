@@ -24,11 +24,11 @@ from load_data import load_history, load_language, load_courses, load_travel, lo
 np.random.seed(289)
 
 # Contact info
-linkedin = img_html('media/linkedin_logo.png', 'max-width:32px', '')
-github = img_html('media/github_logo.png', 'max-width:32px', '')
-facebook = img_html('media/facebook_logo.png', 'max-width:32px', '')
-instagram = img_html('media/instagram_logo.png', 'max-width:32px', '')
-email = img_html('media/icons8-mail.png', 'max-width:32px', '')
+linkedin = img_html('media/logo-linkedin.png', 'max-width:32px', '')
+github = img_html('media/logo-github.png', 'max-width:32px', '')
+facebook = img_html('media/logo-fb.png', 'max-width:32px', '')
+instagram = img_html('media/logo-instagram.png', 'max-width:32px', '')
+email = img_html('media/logo-email.png', 'max-width:32px', '')
 
 socia_media_links = f"""
     <div style='text-align:center;'>
@@ -63,7 +63,7 @@ if page == 'Home':
     # Additional sidebar
     st.sidebar.markdown('### FAQ')
     if st.sidebar.button('Not sure how to pronounce my name?'):
-        st.sidebar.audio('media/name.mp3')
+        st.sidebar.audio('media/sound-name.mp3')
 
     # Main page
     avatar = "<img src='data:image/jpg;base64,{}' class='img-fluid rounded-circle mx-auto d-block' style='max-width:25%'>".format(
@@ -103,7 +103,7 @@ elif page == 'Projects':
     if st.button('How I built this website'):
         st.write('To be written')
 
-        st.markdown('---' m)
+        st.markdown('---')
     if st.button('Travel and photos "My camino"'):
         travel_history = load_travel()
         travel = travel_chart(travel_history)
@@ -111,15 +111,19 @@ elif page == 'Projects':
 
         st.markdown('---')
     if st.button('Fake News Detection'):
-        nlp_wiki = f"""
+        nlp_glossary = f"""
         <details class="shadow p-3 mb-5 bg-white rounded">
-        <summary><i>Small wiki of concepts</i></summary>
+        <summary><i>Glossary of NLP concepts</i></summary>
         <br/>
         <div>
             <strong>Corpus</strong>: set of <i>documents</i> (our dataset of news with <i>fake</i> and <i>real</i> labels).
         </div>
         <div>
             <strong>Documents</strong>: basic unit or object (a particular news or tweet).
+        </div>
+        <div>
+            <strong>Part-of-speech (POS) Tagging</strong>: an identification of words as nouns, verbs, adjectives, adverbs, etc. 
+            Full list of Universal POS tags used by spaCy can be found <a href='https://spacy.io/api/annotation' target='_blank'>here</a>.
         </div>
         <div>
             <strong>Bag-of-Words (BoW) representation</strong>: representation of documents as a collection words with count value for each word.
@@ -168,14 +172,15 @@ elif page == 'Projects':
         </details>
         """
 
-        st.markdown(read_markdown_file('markdown/fake_news_detection_overview.md'), unsafe_allow_html=True)
-        st.markdown(nlp_wiki, unsafe_allow_html=True)
+        st.info("**Disclaimer**: feel free to check *Glossary of NLP concepts* below. Words explained in the glossary are _italic_. Besides, you can find the code with the dataset on my [GitHub](https://github.com/AdiletGaparov/mbd-natural-language-processing/tree/master/fake-news-detection).")
+        st.markdown(read_markdown_file('markdown/fake-news-detection-1-2.md'), unsafe_allow_html=True)
+        st.markdown(nlp_glossary, unsafe_allow_html=True)
 
         st.markdown('---')
     if st.button('Sentiment-based Music Recommender'):
         st.info("**Disclaimer**: this is a group project, but the MVP web app was written by me using Flask (micro web framework written in Python), pure JavaScript, and SoundCloud API. You can find the code on my [GitHub](https://github.com/AdiletGaparov/sentiment-based-song-recommender).")
-        st.markdown(read_markdown_file('markdown/sentiment_music_recommender.md'), unsafe_allow_html=True)
-        st.image('media/JS-sentiment-recommender.png', use_column_width=True, format='PNG')
+        st.markdown(read_markdown_file('markdown/sentiment-music-recommender.md'), unsafe_allow_html=True)
+        st.image('media/ui-sentiment-web-app.png', use_column_width=True, format='PNG')
 
         st.markdown('---')
 

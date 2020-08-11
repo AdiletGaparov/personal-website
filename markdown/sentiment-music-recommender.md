@@ -39,8 +39,8 @@ Prepare your mind for flow state during studying by listening to appropriate mus
 A university student                                                                                                                                    
 
 **User scenarios**  
-A student named Alen is planning to study for an exam on Machine Learning. It is really important one, but there is so many things going on in his head. Moreover, he is not really prepared, but the exam is scheduled for next week and he starts to feel a little bit desperate.
-Alen opens the music app as music helps him concentrate and block outside noise in the room, he chooses the subject he is planning to study now, the level of readiness, and general genre he prefers. The app shows him the list of songs and Alen now can add songs to his playlist and start listening and prepare himself for the upcoming exam. 
+A student named Alen is planning to study for an exam on Machine Learning. It is really important one, but there are so many things going on in his head. Moreover, he is not really prepared, but the exam is scheduled for next week and he starts to feel a little bit desperate.
+Alen decides to listen to music to block outside noise and better concentrate, he opens the music app, chooses the subject he is planning to study now, the level of readiness, and general genre he prefers. The app shows him the list of songs. Alen now can add songs to his playlist and start listening and prepare himself for the upcoming exam. 
 
 **User Stories/Features/Requirements**:    
 * As a student, I want to add songs to my playlist so that I can listen to songs that I chose without interruption.
