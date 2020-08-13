@@ -10,7 +10,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 LABEL maintainer="Adilet Gaparov <adilet.gaparov@gmail.com>" \
-      version="0.1"
+      version="1.0"
 
 CMD streamlit run app.py --server.port $PORT
 

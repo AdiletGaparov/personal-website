@@ -4,7 +4,6 @@ from pathlib import Path
 import altair as alt
 import streamlit as st
 import datetime as dt
-import pandas as pd
 
 def streamlit_theme():
     font = "IBM Plex Mono"
@@ -270,7 +269,7 @@ def language_chart(data):
 
     return alt.layer(chart, text).configure_view(strokeWidth=0)
 
-def programming_language_chart(data):
+def coding_language_chart(data):
     chart = alt.Chart(data).mark_bar(opacity=0.5).encode(
         x=alt.X('level:Q', axis=alt.Axis(title='')),
         y=alt.Y('programming language:N', sort='-x', axis=alt.Axis(title='')),

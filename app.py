@@ -1,47 +1,25 @@
 import streamlit as st
 import streamlit.components.v1 as components
-
 import pandas as pd
-import numpy as np
+
 import altair as alt
-import datetime as dt
-import pickle
-from joblib import dump, load
 
 from textblob import TextBlob
-import spacy
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import SGDClassifier
-from sklearn.ensemble import VotingClassifier
 
+from utils import img_to_bytes, read_markdown_file, gantt_chart, language_chart, coding_language_chart
+from load_data import load_history, load_language, load_courses, load_coding_lang
 
-from utils import img_to_bytes, img_html, read_markdown_file, gantt_chart, language_chart, travel_chart, programming_language_chart
-from load_data import load_history, load_language, load_courses, load_travel, load_programming_lang
-
-# fixing random seed
-np.random.seed(289)
-
-# Contact info
-linkedin = img_html('media/logo-linkedin.png', 'max-width:32px', '')
-github = img_html('media/logo-github.png', 'max-width:32px', '')
-facebook = img_html('media/logo-fb.png', 'max-width:32px', '')
-instagram = img_html('media/logo-instagram.png', 'max-width:32px', '')
-email = img_html('media/logo-email.png', 'max-width:32px', '')
-
-socia_media_links = f"""
-    <div style='text-align:center;'>
-        <div style='inline-block'>
-        <a href='mailto:adilet.gaparov@gmail.com' style='margin-right:5px'>{email}</a>
-        <a href="http://www.linkedin.com/in/adilet-gaparov" target= '_blank' style='margin:5px'>{linkedin}</a>
-        <a href="http://www.github.com/adiletgaparov" target= '_blank' style='margin:5px'>{github}</a>
-        <a href="http://www.facebook.com/adiletgaparov" target='_blank' style='margin:5px'>{facebook}</a>
-        <a href="http://www.instagram.com/adilet.gaparov" target='_blank' style='margin:5px'>{instagram}</a>
-        </div>
-    </div>
-    """
-
+# import content
+from content.contact_info import socia_media_links
+from content.project_wikihow_wireframes import wireframes
+from content.project_fake_news_p2 import project_fake_news_p2
+from content.project_fake_news_p5 import project_fake_news_p5
+from content.project_fake_news_glossary import nlp_glossary
+project_fake_news_p1 = read_markdown_file('content/project_fake_news_p1.md')
+project_fake_news_p3 = read_markdown_file('content/project_fake_news_p3.md')
+project_fake_news_p4 = read_markdown_file('content/project_fake_news_p4.md')
+project_fake_news_p6 = read_markdown_file('content/project_fake_news_p6.md')
+project_wikihow_engineering = read_markdown_file('content/project_wikihow_engineering.md')
 
 # Sidebar
 st.sidebar.markdown("# Navigation")
@@ -49,7 +27,7 @@ navigation_options = ['Home', 'Projects', 'Resume']
 page = st.sidebar.radio(label = '', options = navigation_options, key=0)
 st.sidebar.markdown('---')
 
-# Content
+# Main
 hide_streamlit_style = """
     <style>
     #MainMenu {visibility: hidden;}
@@ -70,7 +48,7 @@ if page == 'Home':
         img_to_bytes("media/avatar.jpg")
     )
     st.markdown(avatar, unsafe_allow_html=True)
-    st.markdown(read_markdown_file("markdown/intro.md"), unsafe_allow_html=True)
+    st.markdown(read_markdown_file("content/intro.md"), unsafe_allow_html=True)
 
     components.html(socia_media_links, height=40)
 
@@ -79,8 +57,9 @@ elif page == 'Projects':
     # Additional sidebar
     st.sidebar.markdown('### Tech Demo')
 
-    fake_test = st.sidebar.text_input('Fake News detector')
-    st.sidebar.markdown(fake_test)
+    # BACKLOG
+    #fake_test = st.sidebar.text_input('Fake News detector')
+    #st.sidebar.markdown(fake_test)
 
     sentiment_test = TextBlob(st.sidebar.text_input('Sentiment Polarity & Subjectivity'))
     if sentiment_test:
@@ -101,86 +80,61 @@ elif page == 'Projects':
     )
 
     if st.button('How I built this website'):
-        st.write('To be written')
-
         st.markdown('---')
-    if st.button('Travel and photos "My camino"'):
-        travel_history = load_travel()
-        travel = travel_chart(travel_history)
-        st.altair_chart(travel, use_container_width=True)
-
+        st.markdown('**Product Requirement Document**')
+        components.html(read_markdown_file('content/PRD.html'), height=500, scrolling=True)
         st.markdown('---')
+        st.markdown('**Design**')
+        st.markdown("""
+        1. Why design is like analytical dashboard?    
+        2. What are other design justifications (color, text, format, etc)? 
+        """)
+        st.markdown('---')
+        st.write('**Design - Wireframes ([Balsamiq Wireframes](https://balsamiq.com/))**')
+        components.html(wireframes, height=550, scrolling=True)
+        st.markdown('---')
+        st.markdown(project_wikihow_engineering)
+        st.markdown('---')
+        st.markdown('**Feedback**')
+        st.text_input('')
+        st.markdown('---')
+        st.write('**Backlog**')
+        components.html(read_markdown_file('content/backlog.html'), height=300, scrolling=True)
+        st.markdown('---')
+
+
+    # BACKLOG
+    #if st.button('Travel and photos "My camino"'):
+    #    travel_history = load_travel()
+    #    travel = travel_chart(travel_history)
+    #    st.altair_chart(travel, use_container_width=True)
+    #    st.markdown('---')
+
     if st.button('Fake News Detection'):
-        nlp_glossary = f"""
-        <details class="shadow p-3 mb-5 bg-white rounded">
-        <summary><i>Glossary of NLP concepts</i></summary>
-        <br/>
-        <div>
-            <strong>Corpus</strong>: set of <i>documents</i> (our dataset of news with <i>fake</i> and <i>real</i> labels).
-        </div>
-        <div>
-            <strong>Documents</strong>: basic unit or object (a particular news or tweet).
-        </div>
-        <div>
-            <strong>Part-of-speech (POS) Tagging</strong>: an identification of words as nouns, verbs, adjectives, adverbs, etc. 
-            Full list of Universal POS tags used by spaCy can be found <a href='https://spacy.io/api/annotation' target='_blank'>here</a>.
-        </div>
-        <div>
-            <strong>Bag-of-Words (BoW) representation</strong>: representation of documents as a collection words with count value for each word.
-            In this representation, what is important is how many times a particular word appears in the corpus and in each document, but not the order of words. 
-            There are 3 main ways to calculate <i>count value</i> for each word: <i>binary weighting</i>, <i>TF weighting</i>, and <i>TF-IDF weighting</i>
-        </div>
-        <div class='text-center'>
-            {img_html('media/wiki-bow-repr.png', 'max-width:50%', 'img-fluid')}
-        </div>
-        <div>
-            <strong>Binary weighting</strong>: the count value is binary indicator (does this word exist in this document?)
-        </div>
-        <div class='text-center'>
-            {img_html('media/wiki-binary-w.png', 'max-width:50%', 'img-fluid')}
-        </div>
-        <div>
-            <strong>Term Frequency (TF) weighting</strong>: the count value is just frequency of a word (how many times does this word appear in this document?).
-        </div>
-        <div class='text-center'>
-            {img_html('media/wiki-tf-w.png', 'max-width:50%', 'img-fluid')}
-        </div>
-        <div>
-            <strong>Term Frequency-Inverse Document Frequency (TF-IDF) weighting</strong>: in TF weighting the words like articles (the, a) appear a lot in each document, which bring little information to distinguish documents. 
-            We want rare words, because they are more informative that frequent ones (articles, pronouns, etc). 
-            We can solve this problem by taking into account the number of documents in which they appear. 
-            Therefore, the count value is real-valued number that is proportional to frequency of a word in this document and inversely proportionally to frequency of documents in which this word appears.
-        </div>
-        <div class='text-center'>
-            {img_html('media/wiki-tf-idf-w.png', 'max-width:50%', 'img-fluid')}
-        </div>
-        <div>
-            <strong>Stopwords</strong>: common words, that bear little value for differentiation, like articles and pronouns. 
-        </div>
-        <div>
-            <strong>Tokens and tokenization</strong>: separation of a sentence into words (<i>tokens</i>).
-        </div>
-        <div>
-            <strong>Stems and stemming</strong>: crude chopping of affixes to base words (<i>stems</i>), so that several similar words convert to one. For example, "automate(s)", "automatic", "automation" all reduces to "automat".
-        </div>
-        <div>
-            <strong>Lemma and lemmatization</strong>: reduction of inflections or variant forms to meaningful base form (<i>lemma</i>). For example, "are", "is", "am" become "be", while "cars" becomes "car". Lemmatizatin is more powerful than stemming, but also takes much more time.
-        </div>
-        <div>
-            <strong>N-grams (unigrams, bigrams)</strong>: contiguous sequence of N words. One word is <i>unigram</i>, two words are called <i>bigram</i>.
-        </div>
-        </details>
-        """
 
-        st.info("**Disclaimer**: feel free to check *Glossary of NLP concepts* below. Words explained in the glossary are _italic_. Besides, you can find the code with the dataset on my [GitHub](https://github.com/AdiletGaparov/mbd-natural-language-processing/tree/master/fake-news-detection).")
-        st.markdown(read_markdown_file('markdown/fake-news-detection-1-2.md'), unsafe_allow_html=True)
+        st.info("""
+            **Disclaimer**: feel free to check *Glossary of NLP concepts* below. 
+            Words explained in the glossary are _italic_. 
+            Besides, you can find my Jupyter Notebook with the dataset and full description on my [GitHub](https://github.com/AdiletGaparov/mbd-natural-language-processing/tree/master/fake-news-detection). 
+        """)
+
+        st.markdown(project_fake_news_p1, unsafe_allow_html=True)
+        st.markdown(project_fake_news_p2, unsafe_allow_html=True)
+        st.markdown(project_fake_news_p3, unsafe_allow_html=True)
+        st.markdown(project_fake_news_p4, unsafe_allow_html=True)
+        st.markdown(project_fake_news_p5, unsafe_allow_html=True)
+        st.markdown(project_fake_news_p6, unsafe_allow_html=True)
         st.markdown(nlp_glossary, unsafe_allow_html=True)
 
         st.markdown('---')
     if st.button('Sentiment-based Music Recommender'):
-        st.info("**Disclaimer**: this is a group project, but the MVP web app was written by me using Flask (micro web framework written in Python), pure JavaScript, and SoundCloud API. You can find the code on my [GitHub](https://github.com/AdiletGaparov/sentiment-based-song-recommender).")
-        st.markdown(read_markdown_file('markdown/sentiment-music-recommender.md'), unsafe_allow_html=True)
-        st.image('media/ui-sentiment-web-app.png', use_column_width=True, format='PNG')
+        st.info("""
+            **Disclaimer**: this is a group project, but the MVP web app was written by me using Flask (micro web framework written in Python), pure JavaScript, and SoundCloud API.
+            You can find the code on my [GitHub](https://github.com/AdiletGaparov/sentiment-based-song-recommender). 
+            You can test TextBlob library on the navigation panel under Tech Demo (left)."""
+        )
+        st.markdown(read_markdown_file('content/project_music_recommender.md'), unsafe_allow_html=True)
+        st.image('media/project-music-recommender-ui.png', use_column_width=True, format='PNG')
 
         st.markdown('---')
 
@@ -223,10 +177,10 @@ elif page == 'Resume':
 
     languages = load_language()
     lang_chart = language_chart(languages)
-    programming_lang = load_programming_lang()
-    programming_lang_chart = programming_language_chart(programming_lang)
+    coding_lang = load_coding_lang()
+    coding_lang_chart = coding_language_chart(coding_lang)
     st.altair_chart(lang_chart, use_container_width=True)
-    st.altair_chart(programming_lang_chart, use_container_width=True)
+    st.altair_chart(coding_lang_chart, use_container_width=True)
     st.markdown('---')
 
     # Courses section

@@ -518,7 +518,7 @@ def load_language():
     return data
 
 @st.cache
-def load_programming_lang():
+def load_coding_lang():
     data = pd.DataFrame([
         {
             'programming language': 'Python',
