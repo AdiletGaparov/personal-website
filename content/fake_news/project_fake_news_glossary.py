@@ -59,4 +59,5 @@ nlp_glossary = f"""
             <strong>N-grams (unigrams, bigrams)</strong>: contiguous sequence of N words. One word is <i>unigram</i>, two words are called <i>bigram</i>.
         </div>
         </details>
+        <br/>
         """

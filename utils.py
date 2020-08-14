@@ -267,23 +267,23 @@ def language_chart(data):
         dx=-3
     ).encode(text='speaking proficiency')
 
-    return alt.layer(chart, text).configure_view(strokeWidth=0)
+    return alt.layer(chart, text).configure_view(strokeWidth=0).properties(width=660)
 
 def coding_language_chart(data):
     chart = alt.Chart(data).mark_bar(opacity=0.5).encode(
-        x=alt.X('level:Q', axis=alt.Axis(title='')),
+        x=alt.X('level:Q', axis=alt.Axis(title=''), scale=alt.Scale(domain=(0,100))),
         y=alt.Y('programming language:N', sort='-x', axis=alt.Axis(title='')),
         tooltip=['comments']
     )
 
     text = chart.mark_text(
-        align='right',
+        align='center',
         baseline='middle',
         font='IBM Plex Mono',
-        dx=-3
+        dx=0
     ).encode(text='definition')
 
-    return alt.layer(chart, text).configure_view(strokeWidth=0)
+    return alt.layer(chart, text).configure_view(strokeWidth=0).properties(width=660)
 
 def travel_chart(data):
     base = alt.Chart(data).encode(

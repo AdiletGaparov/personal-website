@@ -13,7 +13,7 @@ colors = pd.DataFrame([
     },
     {
         'category': 'Contract',
-        'color': '#f63366', #
+        'color': '#f63366', # red - energy, passion
     },
     {
         'category': 'Business trip',
@@ -30,16 +30,17 @@ colors = pd.DataFrame([
 ])
 
 @st.cache
-def load_history():
+def history():
     data = pd.DataFrame([
         {
             "role": "Student - Foundation program",
             "start": date_axis(2011, 8, 9),
             "end": date_axis(2012, 6, 15),
             'category': 'Education',
-            'org': 'Nazarbayev University',
+            'org': 'NU',
             'location': 'Astana (Kazakhstan)',
             'description': """
+                          • Nazarbayev University (nu.edu.kz)
                           • Foundation Program designed by UCL (London, UK). 
                           • 1 of 5 students to pass Advanced Math exam. 
                           • Grades: Physics (72%), Math (88%). 
@@ -50,9 +51,10 @@ def load_history():
             "start": date_axis(2012, 8, 16),
             "end": date_axis(2016, 5, 13),
             'category': 'Education',
-            'org': 'Nazarbayev University',
+            'org': 'NU',
             'location': 'Astana (Kazakhstan)',
             'description': """
+                            • Nazarbayev University (nu.edu.kz)
                             • GPA: 3.47/4.0. 
                             • Coordinated Kazakh-French Cultural Center (Aug 2015-May 2016) during the first year without sponsorship, organized the first paid French classes for students.
             """
@@ -62,9 +64,9 @@ def load_history():
             "start": date_axis(2014, 6, 1),
             "end": date_axis(2014, 7, 31),
             'category': 'Education',
-            'org': 'Alliance française',
+            'org': 'AF',
             'location': 'Toulouse (France)',
-            'description': '• Intensive French classes to improve my accent.'
+            'description': '• Intensive French classes at Alliance française to improve my accent.'
          },
         {
             "role": "Student - Exchange",
@@ -118,9 +120,10 @@ def load_history():
             "start": date_axis(2019, 4, 23),
             "end": date_axis(2020, 3, 6),
             "category": 'Education',
-            'org': 'IE University',
+            'org': 'IE',
             'location': 'Madrid (Spain)',
             'description': """
+                            • IE University (ie.edu)
                             • GPA: 3.91/4.0 (ranked 1st).
                             • IE Talent Scholarship.
                             • Delivered 2 Python workshops for non-technical students.
@@ -134,7 +137,7 @@ def load_history():
             "category": 'Full-time job',
             'org': 'Volvo Cars',
             'location': 'Gothenburg (Sweden)',
-            'description': '• Global Graduate Program (2 years). • 1st rotation: Digital Strategy team.'
+            'description': '• Global Graduate Program (2 years). • 1st rotation: Digital Product Strategy and Planning team.'
          },
         {
             'role': 'Traveler',
@@ -464,10 +467,10 @@ def load_history():
     return pd.merge(data, colors, on='category')
 
 @st.cache
-def load_language():
+def languages():
     data = pd.DataFrame([
         {
-            'language': 'English   ',
+            'language': 'English',
             'proficiency (LinkedIn)': 'Full professional proficiency', # LinkedIn convention
             'level': 84,
             'speaking proficiency': 'Fluent',
@@ -475,7 +478,7 @@ def load_language():
             'comments': 'Undergraduate and graduate degrees completed in English.\nWork in international environments.\nConsume information mostly in English.'
         },
         {
-            'language': 'Russian   ',
+            'language': 'Russian',
             'proficiency (LinkedIn)': 'Native or bilingual proficiency',
             'level': 100,
             'speaking proficiency': 'Native',
@@ -483,7 +486,7 @@ def load_language():
             'comments': 'Mother tongue.'
         },
         {
-            'language': 'French    ',
+            'language': 'French',
             'proficiency (LinkedIn)': 'Professional proficiency',
             'level': 67,
             'speaking proficiency': 'Fluent',
@@ -491,7 +494,7 @@ def load_language():
             'comments': 'Lived 2 months in France.\nObtained DELF B2 certificate in 2015 with Speaking grade of 23/25.\nRoom for improvement: writing skills.'
         },
         {
-            'language': 'Spanish   ',
+            'language': 'Spanish',
             'proficiency (LinkedIn)': 'Professional proficiency',
             'level': 67,
             'speaking proficiency': 'Fluent',
@@ -499,7 +502,7 @@ def load_language():
             'comments': 'Lived 1 year in Madrid, Spain.\nDid not get any certificates yet, but have experience passing interviews in Spanish.\nRoom for improvement: writing skills.'
         },
         {
-            'language': 'Kazakh    ',
+            'language': 'Kazakh',
             'proficiency (LinkedIn)': 'Limited professional proficiency',
             'level': 50,
             'speaking proficiency': 'Proficient',
@@ -507,7 +510,7 @@ def load_language():
             'comments': 'Conversational level of proficiency.'
         },
         {
-            'language': 'Swedish   ',
+            'language': 'Swedish',
             'proficiency (LinkedIn)': 'Elementary proficiency',
             'level': 33,
             'speaking proficiency': 'Beginner',
@@ -518,10 +521,10 @@ def load_language():
     return data
 
 @st.cache
-def load_coding_lang():
+def coding():
     data = pd.DataFrame([
         {
-            'programming language': 'Python',
+            'programming language': 'Python ',
             'level': 80,
             'definition': 'Can write the code',
             'comments': 'This website is written mostly in Python (streamlit). Used Flask, pandas, plotly in my freelance project. Used scikit-learn/PyTorch/Keras for Machine Learning projects.'
@@ -539,13 +542,13 @@ def load_coding_lang():
             'comments': 'Despite preferring pandas over data.table and scikit-learn over R packages for Machine Learning, I can use R if needed.'
         },
         {
-            'programming language': 'HTML5/CSS',
+            'programming language': 'HTML',
             'level': 50,
             'definition': 'Can write some code',
             'comments': 'Used HTML and CSS in my freelance project and in this website.'
         },
         {
-            'programming language': 'JavaScript',
+            'programming language': 'JS',
             'level': 30,
             'definition': 'Can read the code',
             'comments': 'Had a course on JS, used it in a project.'
@@ -554,7 +557,7 @@ def load_coding_lang():
     return data
 
 @st.cache
-def load_courses():
+def courses():
     data = pd.DataFrame([
         {
             'Course': 'Deep Learning Specialization',
@@ -732,7 +735,7 @@ def load_courses():
     return data
 
 @st.cache
-def load_travel():
+def travel():
     data = pd.DataFrame([
         {
             'Year': '2005',
@@ -850,7 +853,3 @@ def load_travel():
 
     return data
 
-@st.cache
-def load_lyrics():
-    data = pd.read_csv('projects_data/lyrics_sentiment.csv')
-    return data
