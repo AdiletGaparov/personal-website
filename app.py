@@ -4,7 +4,7 @@ import altair as alt
 
 from textblob import TextBlob
 
-from utils import sql_connect, img_to_bytes, read_markdown_file, gantt_chart, language_chart, coding_language_chart
+from utils import img_to_bytes, read_markdown_file, gantt_chart, language_chart, coding_language_chart
 
 # import resume content
 from content.contact_info import socia_media_links
