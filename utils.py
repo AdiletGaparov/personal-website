@@ -243,15 +243,23 @@ def read_markdown_file(markdown_file):
     return Path(markdown_file).read_text()
 
 def gantt_chart(data):
+    today = dt.datetime.now()
+    clamp_max = (today + dt.timedelta(days=30*4)).strftime('%Y-%m-%d')
+    clamp_min = (today - dt.timedelta(days=30*12)).strftime('%Y-%m-%d')
     chart = alt.Chart(data).mark_bar().encode(
-        x=alt.X('start:T', axis=alt.Axis(title='', orient='top', format='%b %Y')),
+        x=alt.X('start:T', axis=alt.Axis(title='', orient='top', format='%b %y'),
+                scale=alt.Scale(domain=(clamp_min, clamp_max), clamp=True)),
         x2='end:T',
         y=alt.Y('org:N', sort=None, axis=alt.Axis(title='')),
         color=alt.Color('color', scale=None),
         tooltip=['role', 'start', 'end', 'location', 'description'],
     ).properties(height=300).interactive()
 
-    return chart
+    line = alt.Chart(data).mark_rule().encode(
+        x='now:T'
+    ).interactive()
+
+    return chart+line
 
 def language_chart(data):
     chart = alt.Chart(data).mark_bar(opacity=0.5).encode(

@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 from utils import date_axis
+import datetime as dt
 
 colors = pd.DataFrame([
     {
@@ -464,6 +465,7 @@ def history():
             'description': 'During heavy COVID-19 situation in Madrid, returned to Kazakhstan'
         },
     ])
+    data['now'] = dt.datetime.now()
     return pd.merge(data, colors, on='category')
 
 @st.cache

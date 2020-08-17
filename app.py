@@ -91,7 +91,8 @@ elif page == 'Projects':
         unsafe_allow_html=True
     )
 
-    if st.button('How I built this website'):
+    if st.checkbox('How I built this website'):
+
         st.markdown('---')
         st.markdown('**Product Requirement Document**')
         components.html(project_wikihow_prd, height=550, scrolling=True)
@@ -107,7 +108,8 @@ elif page == 'Projects':
         components.html(project_wikihow_backlog, height=300, scrolling=True)
         st.markdown('---')
 
-    if st.button('Fake News Detection'):
+    if st.checkbox('Fake News Detection'):
+
         st.info(project_fake_news_info)
         st.markdown(project_fake_news_p1, unsafe_allow_html=True)
         st.markdown(project_fake_news_p2, unsafe_allow_html=True)
@@ -119,7 +121,7 @@ elif page == 'Projects':
 
         st.markdown('---')
 
-    if st.button('Sentiment-based Music Recommender'):
+    if st.checkbox('Sentiment-based Music Recommender'):
 
         st.info(project_music_recommender_info)
         st.markdown(project_music_recommender, unsafe_allow_html=True)
