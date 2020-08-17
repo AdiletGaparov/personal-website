@@ -2,6 +2,14 @@ import streamlit as st
 import streamlit.components.v1 as components
 import altair as alt
 
+# Header
+st.beta_set_page_config(
+    page_title='Adilet Gaparov',
+    page_icon='media/avatar.jpg',
+    layout='wide',
+    initial_sidebar_state='auto'
+)
+
 from textblob import TextBlob
 
 from utils import img_to_bytes, read_markdown_file, gantt_chart, language_chart, coding_language_chart
@@ -53,8 +61,8 @@ if page == 'Home':
     avatar = "<img src='data:image/jpg;base64,{}' class='img-fluid rounded-circle mx-auto d-block' style='max-width:25%'>".format(
         img_to_bytes("media/avatar.jpg")
     )
-    st.markdown(avatar, unsafe_allow_html=True)
-    st.markdown(read_markdown_file("content/intro.md"), unsafe_allow_html=True)
+    st.write(avatar, unsafe_allow_html=True)
+    st.write(read_markdown_file("content/intro.md"), unsafe_allow_html=True)
 
     components.html(socia_media_links, height=40)
 
@@ -81,7 +89,7 @@ elif page == 'Projects':
         st.sidebar.markdown(socia_media_links, unsafe_allow_html=True)
 
     # Main page
-    st.markdown(
+    st.write(
         """
         <div style = "text-align: center">
             <div style = "display: inline-block; max-width: 60%">
@@ -93,42 +101,42 @@ elif page == 'Projects':
 
     if st.checkbox('How I built this website'):
 
-        st.markdown('---')
-        st.markdown('**Product Requirement Document**')
+        st.write('---')
+        st.write('**Product Requirement Document**')
         components.html(project_wikihow_prd, height=550, scrolling=True)
-        st.markdown('---')
-        st.markdown(project_wikihow_design, unsafe_allow_html=True)
-        st.markdown('---')
+        st.write('---')
+        st.write(project_wikihow_design, unsafe_allow_html=True)
+        st.write('---')
         st.write('**Design - Wireframes ([Balsamiq Wireframes](https://balsamiq.com/))**')
         components.html(wireframes, height=550, scrolling=True)
-        st.markdown('---')
-        st.markdown(project_wikihow_engineering)
-        st.markdown('---')
+        st.write('---')
+        st.write(project_wikihow_engineering)
+        st.write('---')
         st.write('**Backlog**')
         components.html(project_wikihow_backlog, height=300, scrolling=True)
-        st.markdown('---')
+        st.write('---')
 
     if st.checkbox('Fake News Detection'):
 
         st.info(project_fake_news_info)
-        st.markdown(project_fake_news_p1, unsafe_allow_html=True)
-        st.markdown(project_fake_news_p2, unsafe_allow_html=True)
-        st.markdown(project_fake_news_p3, unsafe_allow_html=True)
-        st.markdown(project_fake_news_p4, unsafe_allow_html=True)
-        st.markdown(project_fake_news_p5, unsafe_allow_html=True)
-        st.markdown(project_fake_news_p6, unsafe_allow_html=True)
-        st.markdown(nlp_glossary, unsafe_allow_html=True)
+        st.write(project_fake_news_p1, unsafe_allow_html=True)
+        st.write(project_fake_news_p2, unsafe_allow_html=True)
+        st.write(project_fake_news_p3, unsafe_allow_html=True)
+        st.write(project_fake_news_p4, unsafe_allow_html=True)
+        st.write(project_fake_news_p5, unsafe_allow_html=True)
+        st.write(project_fake_news_p6, unsafe_allow_html=True)
+        st.write(nlp_glossary, unsafe_allow_html=True)
 
-        st.markdown('---')
+        st.write('---')
 
     if st.checkbox('Sentiment-based Music Recommender'):
 
         st.info(project_music_recommender_info)
-        st.markdown(project_music_recommender, unsafe_allow_html=True)
-        st.image('media/project-music-recommender-ui.png', use_column_width=True, format='PNG')
+        st.write(project_music_recommender, unsafe_allow_html=True)
+        st.image('media/project-music-recommender-ui.png', use_column_width=True, output_format='PNG')
 
 
-        st.markdown('---')
+        st.write('---')
 
 elif page == 'Resume':
 
@@ -146,7 +154,7 @@ elif page == 'Resume':
         </div></div>
         '''
     history_df = history()
-    st.markdown(experience_subtitle, unsafe_allow_html=True)
+    st.write(experience_subtitle, unsafe_allow_html=True)
 
     gantt = gantt_chart(history_df.query("org != 'Key moments'"))
     scatter = alt.Chart(history_df.query("org == 'Key moments'")).mark_circle().encode(
@@ -158,7 +166,8 @@ elif page == 'Resume':
     resume_chart = alt.layer(gantt, scatter).configure_view(strokeWidth=0.5).properties(width=660)
     st.altair_chart(resume_chart, use_container_width=True)
 
-    st.markdown('---')
+    st.write('---')
+
     # Skills section
     skills_subtitle = '''
         <div style="text-align: center"><div style="display: inline-block; max-width: 60%"> 
@@ -166,13 +175,13 @@ elif page == 'Resume':
         <br/>
         </div></div>
         '''
-    st.markdown(skills_subtitle, unsafe_allow_html=True)
+    st.write(skills_subtitle, unsafe_allow_html=True)
 
     lang_chart = language_chart(languages())
     coding_chart = coding_language_chart(coding())
     st.altair_chart(lang_chart, use_container_width=True)
     st.altair_chart(coding_chart, use_container_width=True)
-    st.markdown('---')
+    st.write('---')
 
     # Courses section
     courses_subtitle = '''
@@ -180,7 +189,7 @@ elif page == 'Resume':
             <h3>Courses</h3>
             </div></div>
         '''
-    st.markdown(courses_subtitle, unsafe_allow_html=True)
+    st.write(courses_subtitle, unsafe_allow_html=True)
 
     courses_df = courses()
     courses_columns = ['Course', 'Organization', 'Status']
