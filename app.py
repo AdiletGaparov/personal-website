@@ -6,7 +6,7 @@ import altair as alt
 st.beta_set_page_config(
     page_title='Adilet Gaparov | personal website',
     page_icon='media/avatar.jpg',
-    layout='wide',
+    layout='centered',
     initial_sidebar_state='auto'
 )
 
