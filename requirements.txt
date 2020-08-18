@@ -1,6 +1,5 @@
 streamlit==0.65.2
 pandas==1.1.0
 altair==4.1.0
-nltk
 textblob
-spacy==2.3.2
+
