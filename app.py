@@ -5,7 +5,7 @@ import altair as alt
 # Header
 st.beta_set_page_config(
     page_title='Adilet Gaparov | personal website',
-    page_icon='media/avatar.jpg',
+    page_icon='media/avatar.png',
     layout='centered',
     initial_sidebar_state='auto'
 )
@@ -58,8 +58,8 @@ if page == 'Home':
         st.sidebar.audio('media/sound-name.mp3')
 
     # Main page
-    avatar = "<img src='data:image/jpg;base64,{}' class='img-fluid rounded-circle mx-auto d-block' style='max-width:25%'>".format(
-        img_to_bytes("media/avatar.jpg")
+    avatar = "<img src='data:image/png;base64,{}' class='img-fluid rounded-circle mx-auto d-block' style='max-width:25%'>".format(
+        img_to_bytes("media/avatar.png")
     )
     st.write(avatar, unsafe_allow_html=True)
     st.write(read_markdown_file("content/intro.md"), unsafe_allow_html=True)
