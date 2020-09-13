@@ -464,6 +464,15 @@ def history():
             'location': 'Spain',
             'description': 'During heavy COVID-19 situation in Madrid, returned to Kazakhstan'
         },
+        {
+            'role': 'Person',
+            'start': date_axis(2020, 8, 23),
+            'end': date_axis(2020, 8, 24),
+            'category': 'Personal',
+            'org': 'Key moments',
+            'location': 'Sweden',
+            'description': 'Moved to Gothenburg (Goteborg)'
+        },
     ])
     data['now'] = dt.datetime.now()
     return pd.merge(data, colors, on='category')
