@@ -560,8 +560,8 @@ def coding():
         },
         {
             'programming language': 'JS',
-            'level': 30,
-            'definition': 'Can read the code',
+            'level': 50,
+            'definition': 'Can write some code',
             'comments': 'Had a course on JS, used it in a project.'
         }
     ])
@@ -612,7 +612,7 @@ def courses():
             'Topic': 'Design and UX/UI',
             'Platform': 'productschool.teachable.com',
             'Date': '2020-09-01',
-            'Status': 'In progress',
+            'Status': 'Completed',
             'Certificate': '',
         },
         {
@@ -735,11 +735,20 @@ def courses():
         {
             'Course': 'Docker Fundamentals',
             'Organization': 'A Cloud Guru',
-            'Topic': 'Other',
+            'Topic': 'Full Stack dev',
             'Platform': 'acloud.guru',
             'Status': 'Completed',
             'Date': '2020-07-30',
             'Certificate': ''
+        },
+        {
+            'Course': 'JavaScript Algorithms and Data Structures',
+            'Organization': 'freeCodeCamp.org',
+            'Topic': 'Full Stack dev',
+            'Platform': 'freeCodeCamp.org',
+            'Status': 'Completed',
+            'Date': '2020-11-08',
+            'Certificate': 'https://www.freecodecamp.org/certification/adiletgaparov/javascript-algorithms-and-data-structures'
         }
     ])
 
